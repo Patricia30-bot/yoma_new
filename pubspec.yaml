@@ -1,0 +1,53 @@
+name: yoma_ultimate
+description: "Aplicativo YOMA Ultimate — sistema de segurança e denúncia discreta."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Ícones padrão do iOS
+  cupertino_icons: ^1.0.8
+
+  # 🔥 Firebase core (conexão principal)
+  firebase_core: ^3.5.0
+  # Banco de dados em tempo real (denúncias)
+  cloud_firestore: ^5.4.4
+  # Autenticação segura
+  firebase_auth: ^5.2.2
+  # Geolocalização (alertas com posição)
+  geolocator: ^11.1.0
+  # Permissões do sistema (localização, microfone, etc)
+  permission_handler: ^11.3.1
+  # Notificações locais
+  flutter_local_notifications: ^17.2.3
+  # Sons e vibrações discretas
+  vibration: ^2.0.4
+  # Animações suaves (para interface lilás)
+  flutter_animate: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  # 🖼️ Imagens do YOMA (coloque suas imagens aqui)
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/splash/
+
+  # 🔤 Fonte personalizada (opcional, se quiser ativar depois)
+  # fonts:
+  #   - family: Nunito
+  #     fonts:
+  #       - asset: assets/fonts/Nunito-Regular.ttf
+  #       - asset: assets/fonts/Nunito-Bold.ttf
