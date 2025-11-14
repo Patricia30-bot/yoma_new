@@ -21,31 +21,31 @@ workflows:
         - android_signing_debug
 
     scripts:
-      - name: 🧹 Limpeza e dependências
+      - name: 🧹 Clean & Get Packages
         script: |
           flutter clean
           flutter pub get
 
-      - name: 🔐 Importar certificados e perfis iOS
+      - name: 🔐 iOS Certificates & Profiles
         script: |
-          echo $CERTIFICATE_P12_BAS | base64 --decode > Certificates.p12
-          echo $PROVISIONING_PROFI | base64 --decode > Profile.mobileprovision
+          echo $CERTIFICATE_P12_BASE64 | base64 --decode > Certificates.p12
+          echo $PROVISIONING_PROFILE_BASE64 | base64 --decode > Profile.mobileprovision
 
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp Profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
           security create-keychain -p "" build.keychain
-          security import Certificates.p12 -k build.keychain -P "$CERTIFICATE_PASSWC" -T /usr/bin/codesign
+          security import Certificates.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           security list-keychains -s build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p "" build.keychain
           security set-keychain-settings -lut 21600 build.keychain
 
-      - name: 🛠 Build Android (AAB)
+      - name: 🛠 Build Android AAB
         script: |
           flutter build appbundle --release
 
-      - name: 🍎 Build iOS (IPA)
+      - name: 🍏 Build iOS IPA
         script: |
           flutter build ipa --release \
             --export-options-plist=ios/Runner/ExportOptions.plist
