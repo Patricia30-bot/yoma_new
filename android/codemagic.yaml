@@ -15,8 +15,8 @@ workflows:
 
       groups:
         - YOMA_PROJECT_BASE
-        - IOS_CERTIFICATES
-        - APP_STORE_CONNECT_API_KEYS
+        - IOS Certificate Group
+        - APP_STORE_CONNECT_API_KEY_GROUP
         - google_play_credentials
         - ANDROID_KEYSTORE
 
