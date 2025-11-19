@@ -15,7 +15,7 @@
     <key>provisioningProfiles</key>
     <dict>
         <key>com.yoma.app</key>
-        <string>YOMA_iOS_Profile</string>
+        <string>YOMA_AppStore_2025v11</string>
     </dict>
 </dict>
 </plist>

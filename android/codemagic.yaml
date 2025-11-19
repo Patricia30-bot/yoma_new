@@ -15,10 +15,10 @@ workflows:
 
       groups:
         - YOMA_PROJECT_BASE
-        - yoma_signing_certificates
-        - yoma_ios_credentials
+        - IOS_CERTIFICATE
+        - APP_STORE_CONNECT_API
         - google_play_credentials
-        - android_signing_debug
+        - ANDROID_KEYSTORE
 
     scripts:
       - name: 🧹 Clean & Get Packages
@@ -28,8 +28,8 @@ workflows:
 
       - name: 🔐 iOS Certificates & Profiles
         script: |
-          echo $CERTIFICATE_P12_BASE64 | base64 --decode > Certificates.p12
-          echo $PROVISIONING_PROFILE_BASE64 | base64 --decode > Profile.mobileprovision
+          echo $CERTIFICATE_P12 | base64 --decode > Certificates.p12
+          echo $PROVISIONING_PROFILE | base64 --decode > Profile.mobileprovision
 
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp Profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
@@ -62,7 +62,7 @@ workflows:
         submit_as_draft: true
 
       app_store_connect:
-        api_key: $APP_STORE_CONNECT_API_KEY
+        api_key: $APP_STORE_CONNECT_KEY
         key_id: $APP_STORE_CONNECT_KEY_ID
         issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
