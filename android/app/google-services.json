@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "223510929312",
+    "project_id": "guardian-angel-2e95t",
+    "storage_bucket": "guardian-angel-2e95t.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223510929312:android:cad88930f033d53c960ec5",
+        "android_client_info": {
+          "package_name": "com.patriciagiorgetto.yoma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHVdqPrEQgwCCb0ToxXphEAAQ-UAvdIF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223510929312:android:8d82e9f8ee23d6ae960ec5",
+        "android_client_info": {
+          "package_name": "com.yoma.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHVdqPrEQgwCCb0ToxXphEAAQ-UAvdIF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

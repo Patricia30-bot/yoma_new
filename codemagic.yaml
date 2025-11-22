@@ -15,25 +15,26 @@ workflows:
 
       groups:
         - YOMA_PROJECT_BASE
-        - IOS_Certificate_Group
-        - APP_STORE_CONNECT_API_KEY_GROUP
+        - IOS_CERTIFICATES
+        - APP_STORE_CONNECT_API_KEYS
         - google_play_credentials
         - ANDROID_KEYSTORE
 
     scripts:
-      - name: 🧼 Force Clean Android Cache
+      # 🔥 LIMPEZA COMPLETA PARA APAGAR QUALQUER TRAÇO DO V1 EMBEDDING
+      - name: 🧹 Clean project caches
         script: |
-          rm -rf ~/.gradle/caches
-          rm -rf ~/.gradle/wrapper
           rm -rf android/.gradle
+          rm -rf android/app/.gradle
+          rm -rf android/build
           rm -rf android/app/build
           rm -rf build
-
-      - name: 🧹 Clean & Get Packages
-        script: |
+          rm -rf ios/Pods
+          rm -rf ios/Runner.xcworkspace
           flutter clean
           flutter pub get
 
+      # 🔐 IMPORTAR CERTIFICADOS iOS
       - name: 🔐 iOS Certificates & Profiles
         script: |
           echo $CERTIFICATE_P12 | base64 --decode > Certificates.p12
@@ -44,15 +45,16 @@ workflows:
 
           security create-keychain -p "" build.keychain
           security import Certificates.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          security list-keychains -s build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p "" build.keychain
           security set-keychain-settings -lut 21600 build.keychain
 
+      # 🛠 ANDROID AAB
       - name: 🛠 Build Android AAB
         script: |
           flutter build appbundle --release
 
+      # 🍏 iOS IPA
       - name: 🍏 Build iOS IPA
         script: |
           flutter build ipa --release \
